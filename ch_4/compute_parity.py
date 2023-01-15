@@ -1,3 +1,4 @@
+import csv
 from count_bits import count_bits 
 
 # compute the parity of a 64-bit word
@@ -36,18 +37,25 @@ def parity3(x):
         x &= x -1 # erase the lowest set bit of x
     return result
 
-x = 13
-print(f'parity of {x}:', parity3(x))
+# x = 13
+# print(f'parity of {x}:', parity3(x))
+
+# initialise x to decimal representation of some 64-bit integer
+# x = 17847869031996526993 # parity of 1
+x = 7401045055098065760 # parity of 0
 
 # an improvement based on caching results in a lookup table
+
+# initialise pre_pc as the cache read as a list
+with open('parity_cache', mode='rb') as parity_cache:
+    pre_pc = list(parity_cache.read())
 
 def parity4(x):
     mask_size = 16
     bit_mask = 0xFFFF
-    return (PRE_PC[x >> (3 * mask_size)] ^
-        PRE_PC[(x >> (2 * mask_size)) & bit_mask] ^
-        PRE_PC[(x >> mask_size) & bit_mask] ^
-        PRE_PC[x & bit_mask])
+    return (pre_pc[x >> (3 * mask_size)] ^
+        pre_pc[(x >> (2 * mask_size)) & bit_mask] ^
+        pre_pc[(x >> mask_size) & bit_mask] ^
+        pre_pc[x & bit_mask])
 
-# TODO compute PRE_PC using one of the above methods, then use it as the cache in this version
-# PRE_PC is precomputed parity cache
+print(f'parity4 of x: {parity4(x)}')
