@@ -21,7 +21,7 @@ def parity2(x):
     result = 0
     while bool(x):
         result ^= x & 1 # XOR x AND 1
-        x >>= 1
+        x >>= 1 # right shift x
     return result
 
 # x = 12
@@ -38,3 +38,16 @@ def parity3(x):
 
 x = 13
 print(f'parity of {x}:', parity3(x))
+
+# an improvement based on caching results in a lookup table
+
+def parity4(x):
+    mask_size = 16
+    bit_mask = 0xFFFF
+    return (PRE_PC[x >> (3 * mask_size)] ^
+        PRE_PC[(x >> (2 * mask_size)) & bit_mask] ^
+        PRE_PC[(x >> mask_size) & bit_mask] ^
+        PRE_PC[x & bit_mask])
+
+# TODO compute PRE_PC using one of the above methods, then use it as the cache in this version
+# PRE_PC is precomputed parity cache
