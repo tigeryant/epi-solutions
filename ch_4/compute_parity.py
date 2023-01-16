@@ -41,8 +41,8 @@ def parity3(x):
 # print(f'parity of {x}:', parity3(x))
 
 # initialise x to decimal representation of some 64-bit integer
-# x = 17847869031996526993 # parity of 1
-x = 7401045055098065760 # parity of 0
+x = 17847869031996526993 # parity of 1
+# x = 7401045055098065760 # parity of 0
 
 # an improvement based on caching results in a lookup table
 
@@ -58,4 +58,17 @@ def parity4(x):
         pre_pc[(x >> mask_size) & bit_mask] ^
         pre_pc[x & bit_mask])
 
-print(f'parity4 of x: {parity4(x)}')
+# print(f'parity4 of x: {parity4(x)}')
+
+# optimisation that uses word-level XOR operations
+
+def parity5(x):
+    x ^= x >> 32
+    x ^= x >> 16 
+    x ^= x >> 8 
+    x ^= x >> 4 
+    x ^= x >> 2 
+    x ^= x >> 1 
+    return x & 0x1
+
+print(f'parity5 of x: {parity5(x)}')
