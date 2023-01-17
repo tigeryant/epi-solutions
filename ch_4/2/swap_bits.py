@@ -40,4 +40,59 @@ def swap_bits1(x, i, j):
 
     return x
 
-print(f'Indices {i} and {j} swapped in binary representation of {x}: ', swap_bits1(x, i, j))
+# print(f'1. Indices {i} and {j} swapped in binary representation of {x}: ', swap_bits1(x, i, j))
+
+# attempt 2
+
+# find and isolate x[i] by right shifting x by i, then masking it (& against 0xF)
+# do the same for x[j]
+
+# find the result of their XOR, e.g:
+# xor = a ^ b
+# shift a and b back into position by leftshifting and ORing them
+# XOR this with the original x. Return the result
+
+# incorrect, good try
+
+# def swap_bits2(x, i, j):
+#     a = (x >> i) & 0x1
+#     b = (x >> j) & 0x1
+
+#     if a != b:
+#         c = a ^ b
+#         a_inverse = a ^ c
+#         b_inverse = b ^ c
+#         ab_positioned = (a_inverse << i) | (b_inverse << j)
+#         swapped = x ^ ab_positioned
+#         return swapped
+
+#     return x
+
+# print(f'2. Indices {i} and {j} swapped in binary representation of {x}: ', swap_bits2(x, i, j))
+
+# solution
+
+def swap_bits3(x, i, j):
+    if (x >> i) & 1 != (x >> j) & 1: # if the bits are not equal
+        bit_mask = (1 << i) | (1 << j) # define the bit mask as the OR of the the mask of the bits at indices i and j
+        x ^= bit_mask # x = the XOR of the original x and the bitmask
+    return x
+
+print(f'3. Indices {i} and {j} swapped in binary representation of {x}: ', swap_bits3(x, i, j))
+
+# key points: when we XOR against the bitmask, we effectively invert the bit(s) covered by the mask
+
+# steps:
+# if the bits are not equal:
+# define the bitmask to cover the indices of i and j
+# return the xor of x (the original), and the bitmask
+
+# another attempt:
+
+def swap_bits4(x, i, j):
+    if ((x >> i) & 1) != ((x >> j) & 1):
+        bit_mask = (1 << i) | (1 << j)
+        x ^= bit_mask
+    return x
+
+print('swap bits 4: ', swap_bits4(x, i, j))
