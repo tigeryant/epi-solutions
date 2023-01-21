@@ -5,7 +5,11 @@ if the input is (1110000000000001), the output should be (1000000000000111). Hin
 
 # example 64 bit integers
 # x = 3407369155461708992 # reversed: 234001936739111668
-x = 8123010520786304973 # reversed: 12969905612457336078
+# x = 8123010520786304973 # reversed: 12969905612457336078
+# x = 57717
+# x = 1891285767
+# x = 28858
+x = 47879
 
 # note that the maximum value of x for a 16-bit integer is 65535, since 2^16 - 1 = 65535
 
@@ -20,6 +24,7 @@ def reverse_bits(x, size): # pass x and the number of bits representing that int
     return y
 
 # print('reversed 64-bit int: ', reverse_bits(x, 64))
+print('reversed int: ', reverse_bits(x, 16))
 
 # NOTES
 # We extract the lowest bit from x and rightshift it into position.

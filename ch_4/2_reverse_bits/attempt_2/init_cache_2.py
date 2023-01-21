@@ -14,8 +14,8 @@ x = 65536
 # write the string representation of each integer in the list to a 'cache' file
 
 reverse_list = []
-for x in range(8):
-    reverse_list.append(reverse_bits(x, 8))
+for x in range(65536):
+    reverse_list.append(reverse_bits(x, 16))
 
 with open('reverse_cache.txt', mode='w') as reverse_cache:
     reverse_cache.write('\n'.join(str(word) for word in reverse_list))
