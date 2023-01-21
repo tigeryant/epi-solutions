@@ -1,4 +1,3 @@
-import csv
 from count_bits import count_bits 
 
 # compute the parity of a 64-bit word
