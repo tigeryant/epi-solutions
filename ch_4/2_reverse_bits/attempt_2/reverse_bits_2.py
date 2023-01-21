@@ -7,8 +7,10 @@ if the input is (1110000000000001), the output should be (1000000000000111). Hin
 # x = 3407369155461708992 # reversed: 234001936739111668
 x = 8123010520786304973 # reversed: 12969905612457336078
 
-def reverse_bits(x):
-    size = 64 # initialise this to the number of bits in the integer
+# note that the maximum value of x for a 16-bit integer is 65535, since 2^16 - 1 = 65535
+
+def reverse_bits(x, size): # pass x and the number of bits representing that integer
+    # size = 64 # initialise this to the number of bits in the integer
     position = size - 1
     y = 0
     while position >= 0:
@@ -17,7 +19,7 @@ def reverse_bits(x):
         position -= 1 # decrement position by 1
     return y
 
-print('reversed 64-bit int: ', reverse_bits(x))
+# print('reversed 64-bit int: ', reverse_bits(x, 64))
 
 # NOTES
 # We extract the lowest bit from x and rightshift it into position.
