@@ -12,3 +12,19 @@ Hint: Start with the least significant bit.
 # brute force:
 # check the weight of the input.
 # compare this weight to the weight of input - 1, input + 1, input - 2, input + 2 etc until a solution is found
+
+def closest_weight(x):
+    # find the weight of x
+    # define weight in, weight out and a variable that's incremented on each loop (difference)
+
+    # check x - diff -> if weight of x = weight of x - diff, return x - diff
+    # check x + diff -> if weight of x = weight of x + diff, return x + diff
+    # else, if neither is true, increment the difference
+    # variables:
+    # x, the input
+    # the weight of x
+    # the weight of the int to be evaluated
+    # the difference
+
+    # we need a function to check weights, and a loop to evaluate candidate outputs and increment the difference
+    pass
