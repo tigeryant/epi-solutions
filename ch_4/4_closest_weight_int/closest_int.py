@@ -8,3 +8,7 @@ For example, if x = 6, you should return 5. You can assume the integer fits in 6
 
 Hint: Start with the least significant bit.
 """
+
+# brute force:
+# check the weight of the input.
+# compare this weight to the weight of input - 1, input + 1, input - 2, input + 2 etc until a solution is found
