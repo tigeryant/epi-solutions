@@ -37,6 +37,7 @@ cache_list = [int(x) for x in cache_list]
 
 def reverse_bits_with_cache(x):
     bit_mask = 0xFFFF
+    mask_size = 16
 
     # find the first 16 bits of x
     segment_0 = x >> 48
@@ -57,6 +58,9 @@ def reverse_bits_with_cache(x):
     print('reverse_3: ', reverse_3)
     
     y = reverse_0 | reverse_1 << 16 | reverse_2 << 32 | reverse_3 << 48
-    return y
+    print('y: ', y)
+
+    # refactoring
+    return cache_list[x >> (3 * mask_size)] | (cache_list[(x >> (2 * mask_size)) & bit_mask] << mask_size) | (cache_list[(x >> mask_size) & bit_mask] << (2 * mask_size)) | (cache_list[x & bit_mask] << (3 * mask_size))
 
 print(reverse_bits_with_cache(x))
