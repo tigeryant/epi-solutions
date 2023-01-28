@@ -13,18 +13,25 @@ Hint: Start with the least significant bit.
 # check the weight of the input.
 # compare this weight to the weight of input - 1, input + 1, input - 2, input + 2 etc until a solution is found
 
+def weight(x):
+    count = 0
+    while x != 0:
+        count += 1
+        x = x &(x - 1)
+    return count
+
 def closest_weight(x):
-    # find the weight of x
-    # define weight in, weight out and a variable that's incremented on each loop (difference)
+    diff = 1
+    input_weight = weight(x)
 
-    # check x - diff -> if weight of x = weight of x - diff, return x - diff
-    # check x + diff -> if weight of x = weight of x + diff, return x + diff
-    # else, if neither is true, increment the difference
-    # variables:
-    # x, the input
-    # the weight of x
-    # the weight of the int to be evaluated
-    # the difference
+    while True:
+        current_int = x - diff
+        if weight(current_int) is input_weight:
+            return current_int
+        current_int = x + diff
+        if weight(current_int) is input_weight:
+            return current_int
+        diff += 1
 
-    # we need a function to check weights, and a loop to evaluate candidate outputs and increment the difference
-    pass
+x = 99886623234
+print(f'Closest integer by weight to {x}: {closest_weight(x)}')
