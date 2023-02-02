@@ -26,9 +26,7 @@ def add(x, y):
     for position in range(num_unsigned_bits):
         # isolate the bits at position for each of x and y
         x_bit = (x >> position) & 1
-        print(f'x_bit: {x_bit}')
         y_bit = (y >> position) & 1
-        print(f'y_bit: {y_bit}')
 
         # x & y & carry -> 1, leave (set?) carry at 1
         # x & y not carry -> 0, set carry to 1
@@ -45,15 +43,12 @@ def add(x, y):
             else:
                 result |= (0 << position)
                 carry = 1
-            print(f'AND at position {position}, result: {result}, carry: {carry}')
         elif x_bit ^ y_bit:
             if carry:
-                print('triggered!')
                 result |= (0 << position)
                 carry = 1
             else:
                 result |= (1 << position)
-            print(f'XOR at position {position}, result: {result}, carry: {carry}')
         else:
             if carry:
                 result |= (1 << position)
@@ -62,7 +57,6 @@ def add(x, y):
                 result |= (0 << position)
         
     if carry:
-        print(f'position after loop: {position}')
         result |= (1 << (position + 1))
     return result
 
