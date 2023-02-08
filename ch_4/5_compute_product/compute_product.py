@@ -38,17 +38,11 @@ def add(x, y):
         # neither x nor y, no carry -> 0, leave carry at 0
 
         if x_bit & y_bit:
-            if carry:
-                result |= (1 << position)
-            else:
-                result |= (0 << position)
-                carry = 1
+            result |= (carry << position)
+            carry = 1
         elif x_bit ^ y_bit:
-            if carry:
-                result |= (0 << position)
-                carry = 1
-            else:
-                result |= (1 << position)
+            result |= ((not carry) << position)
+            carry = 0
         else:
             if carry:
                 result |= (1 << position)
