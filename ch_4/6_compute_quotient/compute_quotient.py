@@ -11,6 +11,7 @@ def divide_brute_force(x, y):
     # each iteration, we increment the quotient
     # each iteration we also check the result
 
+    # refactor
     remainder = x - y
     if remainder < 0:
         return 0
@@ -26,3 +27,4 @@ def divide_brute_force(x, y):
 x = 24
 y = 6
 print(f'The quotient derived from dividing {x} by {y} is {divide_brute_force(x, y)}')
+
