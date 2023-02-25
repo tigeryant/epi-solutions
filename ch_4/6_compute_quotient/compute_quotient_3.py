@@ -10,12 +10,12 @@ def divide(x, y):
     result, power = 0, 32
     y_power = y << power
     while x >= y:
-        while y_power > x:
-            y_power >>= 1
-            power -= 1
+        while y_power > x: # here we decrease 2^k*y and power until it's smaller than x
+            y_power >>= 1 # left shift 2^k*y by 1
+            power -= 1 # decrement k
 
-        result += 1 << power
-        x -= y_power
+        result += 1 << power # add 2^k to the quotient
+        x -= y_power # subtract 2^k*y from x
     return result
 
 x = 293842837498237498238947
