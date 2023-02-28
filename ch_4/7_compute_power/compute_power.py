@@ -2,6 +2,8 @@
 Write a program that takes a double x and an integer y and returns x^y. You can ignore overflow and underflow.
 """
 
+# brute force
+
 def compute_power(x: float, y: int) -> float:
     if y == 0:
         return 1
