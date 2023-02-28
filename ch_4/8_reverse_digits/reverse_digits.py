@@ -15,9 +15,11 @@ For general k, we record its sign, solve the problem for |k|, and apply the sign
 def reverse(x: int) -> int:
     result, x_remaining = 0, abs(x)
     while x_remaining:
+        # make room for the new digit (like a left shift), then add x_remaining mod 10 to it
         result = result * 10 + x_remaining % 10
+        # divide x_remaining by 10 (effectively like a right shift)
         x_remaining //= 10
-    return -result if x < 0 else result
+    return -result if x < 0 else result # adjust the sign if needs be
 
 x = 1132
 print(f'The reverse of {x} is {reverse(x)}')
